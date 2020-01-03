@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require('../models/user');
 const Recipe = require('../models/recipe');
 
+const bcrypt = require('bcrypt');
+
 // New route
 router.get('/new', async (req, res) => {
 	res.render('users/new.ejs');
@@ -35,6 +37,17 @@ router.get('/', async (req, res) => {
 		res.send(err);
 	}
 });
+
+//Log out route
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.redirect('/');
+        }
+    })
+})
 
 // Show route
 router.get('/:id', async (req, res) => {
@@ -92,15 +105,49 @@ router.delete('/:id', async (req, res) => {
 });
 
 //Log in route
-router.post('/', async (req, res) => {
-	try {
-		console.log(req.body);
-		await User.create(req.body);
+router.post('/login', async (req, res) => {
+    try {
+        const foundUser = await User.findOne({ username: req.body.username });
+        if(foundUser){
+            if(bcrypt.compareSync(req.body.password, foundUser.password)) {
+                req.session.message = '';
+                req.session.username = foundUser.username;
+                req.session.logged = true;
 
-		res.redirect('/users');
-	} catch (err) {
-		res.send(err);
+                res.redirect('/users');
+            } else {
+                req.session.message = 'Username or password is incorrect';
+                res.redirect('/');
+            }
+        } else {
+            req.session.message = 'Username or password is incorrect';
+            res.redirect('/');
+        }
+    } catch(err) {
+        res.send(err);
+    }
+})
+
+///Register Route
+
+router.post('/registration', async (req, res) => {
+    
+	const passwordHash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+	console.log(passwordHash);
+    const userDbEntry = {
+        username: req.body.username,
+        password: passwordHash,
+        email: req.body.email
 	}
-});
+	console.log(userDbEntry);
+    try {
+		const createdUser = await User.create(userDbEntry);
+        req.session.username = createdUser.username;
+        req.session.logged = true;
+        res.redirect('/users');
+    } catch(err) {
+        res.send(err);
+    }
+})
 
 module.exports = router;	  
