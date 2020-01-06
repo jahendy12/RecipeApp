@@ -36,6 +36,7 @@ const User = require('../models/user');
 // 		res.send(400);
 // 	}
 // })
+// the above is all from Josh's lesson on inserting pictures, I found it to be a bit too difficult unfortunately...
 
 
 // New route
