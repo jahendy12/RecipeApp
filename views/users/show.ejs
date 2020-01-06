@@ -27,7 +27,7 @@
             <h3>User Recipes</h3>    
             <ul class="nav justify-content-center">
                 <% for(recipe in recipes) { %>
-                    <li class="nav-item"><a class="nav-link" href="/recipes/<%= recipes[recipe]._id %>"><%= recipes[recipe].name %></a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="/recipes/<%= recipes[recipe]._id %>"><%= recipes[recipe].name %></a></li>
                 <% } %>
             </ul>
             <section>
@@ -36,7 +36,7 @@
                 </form>
             </section>
             <section class="nav justify-content-center">
-                <a class="nav-item" href="/users/<%= user._id %>/edit">Edit</a>
+                <a class="nav-item text-secondary" href="/users/<%= user._id %>/edit">Edit</a>
             </section>
         </main>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

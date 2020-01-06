@@ -25,7 +25,7 @@
             <ul class="nav justify-content-center">
                 <% for(let i = 0; i < users.length; i++) { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/<%= users[i]._id %>"><%= users[i].username %></a>
+                        <a class="nav-link text-secondary" href="/users/<%= users[i]._id %>"><%= users[i].username %></a>
                     </li>
                 <% } %>
             </ul>
