@@ -1,5 +1,10 @@
 body {
-    background-color: skyblue;
+    background-color: peachpuff
+}
+
+header {
+    background-color: #1E5162;
+    
 }
 
 a {
@@ -8,14 +13,23 @@ a {
 
 h1 {
     text-align: center;
+    color: white;
 }
 
 h2 {
     text-align: center;  
 }
 
+h3 {
+    text-align: center;
+}
+
 h4 {
     text-align: center;
+}
+
+h6 {
+    color: white;
 }
 
 p {

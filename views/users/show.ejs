@@ -22,13 +22,12 @@
         </header>
         <main>
             <h2>User Attributes</h2>
-            <ul>
-                <li>Name: <%= user.username %></li>
-                <li>Email: <%= user.email %></li>
-            </ul>
-            <ul>
+                <p class="text-center">Name: <%= user.username %></p>
+                <p class="text-center">Email: <%= user.email %></p>
+            <h3>User Recipes</h3>    
+            <ul class="nav justify-content-center">
                 <% for(recipe in recipes) { %>
-                    <li><a href="/recipes/<%= recipes[recipe]._id %>"><%= recipes[recipe].title %></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recipes/<%= recipes[recipe]._id %>"><%= recipes[recipe].name %></a></li>
                 <% } %>
             </ul>
             <section>

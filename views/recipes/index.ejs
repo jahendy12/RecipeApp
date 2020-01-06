@@ -22,10 +22,10 @@
         </header>
         <main>
             <h2>List of Recipes</h2>
-            <ul>
+            <ul class="nav justify-content-center">
                 <% for(let i = 0; i < recipes.length; i++) { %>
-                    <li>
-                        <a href="/recipes/<%= recipes[i]._id %>"><%= recipes[i].name %></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recipes/<%= recipes[i]._id %>"><%= recipes[i].name %></a>
                     </li>
                 <% } %>
             </ul>

@@ -23,17 +23,8 @@
 		<main>
 			<h2>Recipe Attributes:</h2>
 			<form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
-				<select name="user">
-					<% for(let i = 0; i < users.length; i++) { %>
-						<option value="<%= users[i]._id %>"
-							<% if(users[i]._id.toString() === recipe.user._id.toString()) { %>
-								selected
-							<% } %>
-						><%= users[i].name %></option>
-					<% } %>
-				</select><br/>
-				<input type="text" name="title" value="<%= recipe.title %>"/><br/>
-				<textarea name="body"><%= recipe.body %></textarea><br/>
+				<input type="text" name="ingredients" placeholder="Ingredients" value="<%= recipe.ingredients %>"/><br/>
+				<input type="text" name="directions" placeholder="Directions" value="<%= recipe.directions %>"/><br/>
 				<input type="submit" value="Update Recipe"/>
 			</form>
 		</main>
